@@ -20,7 +20,7 @@ const CreateTweetCard = ({ isModal }: any) => {
   console.log("isModal: ", isModal);
 
   return (
-    <div className="flex max-h-80 min-h-fit pb-4 border-2 border-red-600 justify-between">
+    <div className="flex max-h-80 min-h-fit pb-4 border-2 border-slate-200 rounded-lg justify-between">
       {/* left profile photo section */}
       <div className="flex w-1/6 pl-4 pt-4 items-start justify-center">
         <Avatar
@@ -31,11 +31,15 @@ const CreateTweetCard = ({ isModal }: any) => {
       </div>
 
       {/* middle text section */}
-      <div className="flex w-2/3 rounded-lg border-gray-300 m-2">
+      <div className="flex w-2/3 rounded-lg m-2">
         <Textarea
           placeholder="What is happening?!"
           size={"xl"}
-          className="p-4 text-xl w-full rounded-lg"
+          variant='outline'
+          padding='4'
+          w='full'
+          rounded='lg'
+          fontSize='lg'
           value={tweetText}
           onChange={(event) => setTweetText(event.target.value)}
         />

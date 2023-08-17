@@ -1,47 +1,96 @@
-import React from 'react'
-import Image from "next/image";
+"use client";
 
-const TweetCard = () => {
+import React from "react";
+import { IconButton, Avatar } from "@chakra-ui/react";
+import { IconContext } from "react-icons";
+import { PiRepeatBold } from "react-icons/pi";
+import { FaRegComment, FaRegHeart } from "react-icons/fa";
+
+const TweetCard = ({ hasMedia }: { hasMedia: boolean }) => {
   return (
-    <div className='flex border-2 border-indigo-400 px-6 py-2'>
-        
-        <div className='flex flex-col w-1/3 border-2 border-sky-200 justify-between'>
-            <div>
-            <div className='flex border border-black-400'>
-                <Image src="/sun-profile.jpg" alt="sun-profile" width={80} height={80} className='rounded-full'/>
-                <div className='flex flex-col justify-center p-4'>
-                    <strong>Andrew Alfred</strong>
-                    <span className='text-slate-500'>@screamingsun</span>
-                </div>
+    <div className="flex px-6 py-2 pt-4">
+      <div className="flex flex-col w-[100%] justify-between">
+        <div>
+          <div className="flex items-center">
+            <Avatar
+            name="Andrew Alfred"
+            src="/sun-profile.jpg"
+            size="lg"
+            />
+            <div className="flex flex-col justify-center p-4">
+              <strong>Andrew Alfred</strong>
+              <span className="text-slate-500">@screamingsun</span>
             </div>
-            <p className='flex border border-black-400 p-4'>
-                Hello this is Andrew Alfred the screaming sun and it's my first time using Z. Hope to make new friends and share new memories with everyone. Cheers. x
-            </p>
-            </div>
-            <div className='flex justify-around align-self-end border border-purple-400'>
-                <div>
-                    Comment
-                </div>
-                <div>
-                    Retweet
-                </div>
-                <div>
-                    Like
-                </div>
-            </div>
+          </div>
+          <p className="flex p-4">
+            Hello this is Andrew Alfred the screaming sun and it's my first time
+            using Z. Hope to make new friends and share new memories with
+            everyone. Cheers. x
+          </p>
         </div>
-        <div className='border-2 border-red-300 w-2/3 m-2 grid grid-cols-2 aspect-[4/3]'>
-            <div className='border-2 border-orange-500 w-full h-full'>
-            </div>
-            <div className='border-2 border-orange-500 w-full h-full'>
-            </div>
-            <div className='border-2 border-orange-500 w-full h-full'>
-            </div>
-            <div className='border-2 border-orange-500 w-full h-full'>
-            </div>
+        <div className="flex justify-around align-self-end">
+          <IconButton
+            onClick={() => console.log("clicked comment button!")}
+            aria-label="Comment"
+            icon={
+              <IconContext.Provider value={{ size: "20" }}>
+                <FaRegComment />
+              </IconContext.Provider>
+            }
+            size="lg"
+            isRound={true}
+            _hover={{
+              color: "blue.500",
+            }}
+            variant={"outline"}
+            border={"none"}
+          />
+          <IconButton
+            onClick={() => console.log("clicked retweet button!")}
+            aria-label="Retweet"
+            icon={
+              <IconContext.Provider value={{ size: "20" }}>
+                <PiRepeatBold />
+              </IconContext.Provider>
+            }
+            size="lg"
+            isRound={true}
+            _hover={{
+              color: "green.500",
+            }}
+            variant={"outline"}
+            border={"none"}
+          />
+          <IconButton
+            onClick={() => console.log("clicked like button!")}
+            aria-label="Like"
+            icon={
+              <IconContext.Provider value={{ size: "20" }}>
+                <div>
+                  <FaRegHeart />
+                </div>
+              </IconContext.Provider>
+            }
+            size="lg"
+            isRound={true}
+            _hover={{
+              color: "red.500",
+            }}
+            variant={"outline"}
+            border={"none"}
+          />
         </div>
+      </div>
+      {hasMedia && (
+        <div className="border-2 border-red-300 w-[2400px] m-2 grid grid-cols-2 aspect-[4/3]">
+          <div className="w-full h-full"></div>
+          <div className="w-full h-full"></div>
+          <div className="w-full h-full"></div>
+          <div className="w-full h-full"></div>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default TweetCard
+export default TweetCard;

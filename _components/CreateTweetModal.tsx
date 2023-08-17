@@ -1,5 +1,4 @@
-"use client";
-
+'use client'
 import React from "react";
 import {
   Modal,
@@ -9,13 +8,11 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
   Button,
 } from "@chakra-ui/react";
 import CreateTweetCard from "./CreateTweetCard";
 
 const CreateTweetModal = ({ isOpen, onOpen, onClose }: any) => {
-  // const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={'xl'}>

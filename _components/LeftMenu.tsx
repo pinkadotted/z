@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import MenuItem from "./MenuItem";
 import CreateTweetModal from "./CreateTweetModal";
-import { useDisclosure } from "@chakra-ui/react";
+import { Image, useDisclosure } from "@chakra-ui/react";
 
 const menuItems = [
   {
@@ -38,14 +38,19 @@ const menuItems = [
 
 const LeftMenu = () => {
   const [selected, setSelected] = useState("Home");
+  // custom hook from chakra ui dealing with the modal opening and closing
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <div className="flex flex-col w-1/5 justify-start h-max sticky top-20">
+      <div className="flex flex-col w-1/5 sticky top-0 h-full ">
         <CreateTweetModal isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
+        <div className=" w-full pb-20 pt-3 px-5 ">
+        <Image src="/twitter.png" alt="logo" width={12} height={12} onClick={() => console.log('clicked logo!')}
+        cursor='pointer'/>
+        </div>
 
-        <div className="justify-center pb-20">
+        <div className="justify-center pb-20 w-full">
           {menuItems.map((item) => {
             return (
               <MenuItem
@@ -62,7 +67,8 @@ const LeftMenu = () => {
         <div className="flex justify-center h-16">
           <button
             onClick={onOpen}
-            className="rounded-full bg-sky-500  w-3/4 text-white font-semibold text-xl transform transition-transform duration-300 hover:scale-105"
+            className="rounded-full bg-sky-500  w-3/4 text-white font-semibold text-xl "
+            // transform transition-transform duration-300 hover:scale-105
           >
             Post
           </button>
