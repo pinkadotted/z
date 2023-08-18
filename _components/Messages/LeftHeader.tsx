@@ -7,7 +7,7 @@ import { LuMailPlus } from "react-icons/lu";
 
 const LeftHeader = () => {
   return (
-    <div className="flex flex-col w-full justify-around items-center">
+    <div className="flex flex-col w-full justify-around items-center pb-4">
       <div className="flex justify-between items-center w-full p-3">
         {/* Top Left Heading*/}
         <h1 className="text-2xl font-bold">Messages</h1>

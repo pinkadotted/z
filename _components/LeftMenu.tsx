@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import MenuItem from "./MenuItem";
 import CreateTweetModal from "./CreateTweetModal";
 import { Image, useDisclosure } from "@chakra-ui/react";
+import { useRouter, usePathname } from "next/navigation";
 
 const menuItems = [
   {
@@ -37,7 +38,8 @@ const menuItems = [
 ];
 
 const LeftMenu = () => {
-  const [selected, setSelected] = useState("Home");
+  const pathname = usePathname()
+  console.log('pathname: ', pathname)
   // custom hook from chakra ui dealing with the modal opening and closing
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -57,8 +59,7 @@ const LeftMenu = () => {
                 name={item.name}
                 key={item.name}
                 icon={item.icon}
-                isActive={selected === item.name}
-                sendDataToParent={() => setSelected(item.name)}
+                isActive={pathname === item.route}
                 route={item.route}
               />
             );

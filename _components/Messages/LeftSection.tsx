@@ -5,7 +5,7 @@ import LeftCard from './LeftCard'
 const LeftSection = () => {
   return (
     <div>
-      <div className="flex sticky top-0 bg-white bg-opacity-60 backdrop-blur-sm z-10">
+      <div className="flex sticky top-0 bg-white bg-opacity-90 backdrop-blur-sm z-10">
         <LeftHeader />
       </div >
       <div className="divide-y divide-blue-200">

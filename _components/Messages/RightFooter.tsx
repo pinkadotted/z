@@ -1,8 +1,13 @@
+'use client'
 import React from 'react'
+import SearchBar from '../SearchBar'
+import MessageInput from './MessageInput'
 
 const RightFooter = () => {
   return (
-    <div>RightFooter</div>
+    <div className='w-full'>
+      <MessageInput />
+    </div>
   )
 }
 

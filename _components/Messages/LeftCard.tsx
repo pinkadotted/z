@@ -6,7 +6,7 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 
 const LeftCard = () => {
   return (
-    <div className='flex h-20 items-center justify-between px-3 border-2 border-green-500'>
+    <div className='flex h-20 items-center justify-between px-3 '>
       {/* Avatar */}
       <div>
       <Avatar
@@ -18,7 +18,7 @@ const LeftCard = () => {
       <div className='flex flex-col '>
         <div className='flex'>
             <strong className='px-2'>VViolet</strong>
-            <p className='px-1 font-semibold text-slate-400 border-2 border-red-500'>@wanderinmarchen</p>
+            <p className='px-1 font-semibold text-slate-400 '>@wanderinmarchen</p>
             <p className='px-2 text-slate-400'>Jun 6</p>
         </div>
         <div>
