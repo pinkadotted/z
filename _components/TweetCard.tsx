@@ -1,22 +1,46 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { IconButton, Avatar } from "@chakra-ui/react";
 import { IconContext } from "react-icons";
 import { PiRepeatBold } from "react-icons/pi";
 import { FaRegComment, FaRegHeart } from "react-icons/fa";
+import ProfileSummaryCard from "./Cards/ProfileSummaryCard";
 
 const TweetCard = ({ hasMedia }: { hasMedia: boolean }) => {
+  const [isHovering, setIsHovering] = useState(false);
+
+
+  let hoverTimeout:any;
+
+  const handleMouseEnter = () => {
+    clearTimeout(hoverTimeout);
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    hoverTimeout = setTimeout(() => {
+      setIsHovering(false);
+    }, 2000); // Set the delay to 2000 milliseconds (2 seconds)
+  };
+
   return (
     <div className="flex px-6 py-2 pt-4">
       <div className="flex flex-col w-[100%] justify-between">
         <div>
-          <div className="flex items-center">
+        <div className="flex items-center relative "> {/* Add relative positioning */}
             <Avatar
-            name="Andrew Alfred"
-            src="/sun-profile.jpg"
-            size="lg"
+              name="Andrew Alfred"
+              src="/sun-profile.jpg"
+              size="lg"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             />
+            {isHovering && (
+              <div className="absolute top-full left-0 z-10"> {/* Absolute positioning */}
+                <ProfileSummaryCard />
+              </div>
+            )}
             <div className="flex flex-col justify-center p-4">
               <strong>Andrew Alfred</strong>
               <span className="text-slate-500">@screamingsun</span>

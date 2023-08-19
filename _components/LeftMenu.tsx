@@ -39,7 +39,6 @@ const menuItems = [
 
 const LeftMenu = () => {
   const pathname = usePathname()
-  console.log('pathname: ', pathname)
   // custom hook from chakra ui dealing with the modal opening and closing
   const { isOpen, onOpen, onClose } = useDisclosure();
 

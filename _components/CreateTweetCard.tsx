@@ -17,8 +17,6 @@ const CreateTweetCard = ({ isModal }: any) => {
     setTweetText((prev) => prev + emoji);
   };
 
-  console.log("isModal: ", isModal);
-
   return (
     <div className="flex max-h-80 min-h-fit pb-4 border-2 border-slate-200 rounded-lg justify-between">
       {/* left profile photo section */}
