@@ -5,6 +5,7 @@ import MenuItem from "./MenuItem";
 import CreateTweetModal from "./CreateTweetModal";
 import { Image, useDisclosure } from "@chakra-ui/react";
 import { useRouter, usePathname } from "next/navigation";
+import { getAllUsers } from "@/lib/actions/users.action";
 
 const menuItems = [
   {
@@ -41,13 +42,14 @@ const LeftMenu = () => {
   const pathname = usePathname()
   // custom hook from chakra ui dealing with the modal opening and closing
   const { isOpen, onOpen, onClose } = useDisclosure();
+  
 
   return (
     <>
       <div className="flex flex-col w-1/5 sticky top-0 h-full ">
         <CreateTweetModal isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
         <div className=" w-full pb-20 pt-3 px-5 ">
-        <Image src="/twitter.png" alt="logo" width={12} height={12} onClick={() => console.log('clicked logo!')}
+        <Image src="/twitter.png" alt="logo" width={12} height={12} onClick={() => getAllUsers()}
         cursor='pointer'/>
         </div>
 

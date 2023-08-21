@@ -3,7 +3,8 @@ import React from "react";
 
 const ProfileSummaryCard = () => {
   return (
-    <div className="flex flex-col border-2 border-gray-300 w-fit h-60 bg-white drop-shadow-2xl z-50 rounded-xl justify-around pb-3">
+    // <div className="flex flex-col border-2 border-red-300 w-fit h-60 bg-white drop-shadow-2xl z-50 rounded-xl justify-around pb-3">
+     <div className='flex flex-col justify-around'> 
       <div className="flex p-2  justify-between">
         <Avatar name="Andrew Alfred" src="/sun-profile.jpg" size="md" />
         <button className="rounded-3xl text-white bg-sky-300 px-3">
