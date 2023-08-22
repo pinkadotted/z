@@ -15,9 +15,9 @@ export default function Home() {
 
   useEffect( () => {
       const getUsers = async () => {
-        const allUsers = await getAllUsers()
+        // const allUsers = await getAllUsers()
         const currentUser = await printCurrentUser()
-        console.log('all users: ', allUsers)
+        // console.log('all users: ', allUsers)
         console.log('current user: ', currentUser)
       }
       getUsers()
