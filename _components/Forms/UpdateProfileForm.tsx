@@ -13,21 +13,24 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { UserValidation } from "@/lib/validations/user";
 import { Label } from "@radix-ui/react-label";
+import { onboardUser } from "@/lib/actions/users.action";
+import { useRouter } from "next/navigation";
 
 export function UpdateProfileForm() {
+  const router = useRouter();
   // 1. Define your form.
   const form = useForm<z.infer<typeof UserValidation>>({
     resolver: zodResolver(UserValidation),
     defaultValues: {
       username: "",
-      displayName:"",
-      profile_photo:"",
-      bio:"",
+      displayName: "",
+      profilephotourl: "",
+      bio: "",
     },
   });
 
@@ -36,6 +39,8 @@ export function UpdateProfileForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    onboardUser(values);
+    router.push("/");
   }
 
   return (
@@ -43,12 +48,16 @@ export function UpdateProfileForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="profile_photo"
+          name="profilephotourl"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Profile Photo</FormLabel>
               <FormControl>
-                <Input id="picture" type="file" />              
+                {/* <Input id="picture" type="file" />               */}
+                <Input
+                  placeholder="Please enter your display name"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -61,7 +70,10 @@ export function UpdateProfileForm() {
             <FormItem>
               <FormLabel>Display Name</FormLabel>
               <FormControl>
-                <Input placeholder="Please enter your display name" {...field} />
+                <Input
+                  placeholder="Please enter your display name"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -89,7 +101,7 @@ export function UpdateProfileForm() {
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Textarea placeholder="Please enter your bio" />
+                <Textarea placeholder="Please enter your bio" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
