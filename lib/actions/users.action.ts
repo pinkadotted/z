@@ -31,6 +31,9 @@ export const getMe = async () => {
         displayName: me.displayName,
         bio: me.bio,
         profilephotourl: profilephotourl,
+        noFollowing: me.noFollowing,
+        noFollowers: me.noFollowers,
+        noPosts: me.noPosts,
         onboarded: me.onboarded,
       };
       // console.log("parsed_me: ", parsed_me);

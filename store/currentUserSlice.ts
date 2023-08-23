@@ -8,6 +8,9 @@ interface UserState {
   displayName: string;
   bio: string;
   profilephotourl: string;
+  noFollowing: number;
+  noFollowers: number;
+  noPosts: number;
   onboarded: boolean;
 }
 
@@ -17,6 +20,9 @@ const initialState: UserState = {
   displayName: "",
   bio: "",
   profilephotourl: "",
+  noFollowing: 0,
+  noFollowers: 0,
+  noPosts: 0,
   onboarded: false,
 };
 
@@ -31,6 +37,9 @@ const currentUserSlice = createSlice({
       state.profilephotourl = action.payload.profilephotourl;
       state.onboarded = action.payload.onboarded;
       state.bio = action.payload.bio;
+      state.noFollowers = action.payload.noFollowers,
+      state.noFollowing = action.payload.noFollowing;
+      state.noPosts = action.payload.noPosts;
     },
   },
 });

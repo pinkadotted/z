@@ -1,5 +1,6 @@
 "use client";
 
+import { useAppSelector } from "@/store/hooks";
 import {
   Avatar,
   Box,
@@ -17,13 +18,19 @@ import {
 import React from "react";
 
 const ProfileSection = () => {
+
+  // Store subscription
+  const currentUser = useAppSelector((state) => state.currentUser);
+  console.log('currUser: ', currentUser)
+
+
   return (
     // <div className="flex flex-col border-2 border-green-500 m-5 p-5">
     <Card w="full" h="fit">
       <CardBody>
         <div className=" max-h-[400px]">
           <Image
-            src="/assets/profile-banner.jpeg"
+            src={currentUser.profilephotourl}
             alt="Green double couch with wooden legs"
             borderRadius="lg"
             h="xs"
@@ -32,10 +39,10 @@ const ProfileSection = () => {
             // borderWidth="2"
           />
           <Avatar
-            name="Segun Adebayo"
+            name={currentUser.displayName}
             w="200px"
             h="200px"
-            src="/assets/profile-photo.jpg"
+            src={currentUser.profilephotourl}
             position="relative"
             zIndex="1"
             top="-28"
@@ -52,13 +59,13 @@ const ProfileSection = () => {
                 <Heading size="md" 
                 // border="1px solid black" borderWidth="2"
                 >
-                  CCL ❤️ EVERLAND
+                  {currentUser.displayName}
                 </Heading>
                 <Text
                   fontSize="sm"
                   // border="1px solid black" borderWidth="2"
                 >
-                  @isaacsguitar_
+                  @{currentUser.username}
                 </Text>
               </div>
             </div>
@@ -68,8 +75,7 @@ const ProfileSection = () => {
           </div>
 
           <Text>
-            💙 isaac hong & superband 💙 (yes im the stranger who liked your
-            isaac hong tweet 🤧) im also @wydpngisac but currently IA
+          {currentUser.bio}
           </Text>
         </Stack>
         <ButtonGroup
@@ -79,10 +85,10 @@ const ProfileSection = () => {
           pt="3"
         >
           <Button variant="link" colorScheme="blue">
-            98 Following{""}
+            {currentUser.noFollowing} Following{""}
           </Button>
           <Button variant="link" colorScheme="blue">
-            314 Followers
+            {currentUser.noFollowers} Followers
           </Button>
         </ButtonGroup>
       </CardBody>
