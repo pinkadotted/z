@@ -1,6 +1,7 @@
 "use client";
 
-import { Avatar, Textarea } from "@chakra-ui/react";
+import { useAppSelector } from "@/store/hooks";
+import { Avatar, SkeletonCircle, Textarea } from "@chakra-ui/react";
 import EmojiPicker from "emoji-picker-react";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -13,6 +14,9 @@ const CreateTweetCard = ({ isModal }: any) => {
     accept: "image/*",
   });
 
+  // Store subscription
+  const currentUser = useAppSelector((state) => state.currentUser);
+
   const addEmoji = (emoji: any) => {
     setTweetText((prev) => prev + emoji);
   };
@@ -22,9 +26,9 @@ const CreateTweetCard = ({ isModal }: any) => {
       {/* left profile photo section */}
       <div className="flex w-1/6 pl-4 pt-4 items-start justify-center">
         <Avatar
-          name="Segun Adebayo"
-          size={isModal ? 'lg' : "2xl"}
-          src="https://bit.ly/sage-adebayo"
+          name={currentUser.displayName}
+          size={isModal ? "lg" : "2xl"}
+          src={currentUser.profilephotourl}
         />
       </div>
 
@@ -33,11 +37,11 @@ const CreateTweetCard = ({ isModal }: any) => {
         <Textarea
           placeholder="What is happening?!"
           size={"xl"}
-          variant='outline'
-          padding='4'
-          w='full'
-          rounded='lg'
-          fontSize='lg'
+          variant="outline"
+          padding="4"
+          w="full"
+          rounded="lg"
+          fontSize="lg"
           value={tweetText}
           onChange={(event) => setTweetText(event.target.value)}
         />
