@@ -1,5 +1,6 @@
 "use client";
 
+import { createPostAction } from "@/lib/actions/users.action";
 import { useAppSelector } from "@/store/hooks";
 import { Avatar, SkeletonCircle, Textarea } from "@chakra-ui/react";
 import EmojiPicker from "emoji-picker-react";
@@ -19,6 +20,19 @@ const CreateTweetCard = ({ isModal }: any) => {
 
   const addEmoji = (emoji: any) => {
     setTweetText((prev) => prev + emoji);
+  };
+
+  // Handing button click to trigger creation of post
+  const createPostHandler = async () => {
+    const content = tweetText;
+    console.log("content: ", content);
+    // create an obj
+    const postObj = {
+      content,
+      id: currentUser.id
+    };
+    console.log('postObj: ', postObj)
+    createPostAction(postObj);
   };
 
   return (
@@ -75,7 +89,7 @@ const CreateTweetCard = ({ isModal }: any) => {
             className={`rounded-full bg-sky-500 text-white font-semibold text-md h-10 w-1/2 ${
               tweetText.length === 0 ? "disabled:opacity-50" : ""
             }`}
-            onClick={() => console.log("button clicked")}
+            onClick={createPostHandler}
             disabled={tweetText.length === 0}
           >
             Post

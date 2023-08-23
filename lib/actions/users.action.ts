@@ -69,3 +69,23 @@ export const onboardUser = async (formValues: object) => {
     console.log("the error is: ", error);
   }
 };
+
+export const createPostAction =async (postObj: any) => {
+  try {
+    const curUser = await currentUser();
+    if (curUser != null) {
+      console.log('creating a post in the db...')
+      const obj = {...postObj, author: curUser.id}
+      console.log('c: ', obj)
+      const userDetails = await pb.collection("posts").create({
+        ...postObj,
+        author: postObj.id
+      });
+      console.log('userDetails: ', userDetails)
+    } else {
+      console.log("curUser is null");
+    }
+  } catch (error) {
+    console.log("the error is: ", error);
+  }
+}
