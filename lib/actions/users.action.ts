@@ -15,11 +15,34 @@ export const getAllUsers = async () => {
   }
 };
 
+export const getMe = async () => {
+  // get username from Clerk
+  const curUsr = await currentUser();
+  if (curUsr != null) {
+    const username = curUsr.username;
+    const profilephotourl = curUsr.profileImageUrl;
+    const allUsers = await pb.collection("users").getFullList();
+    const me = allUsers.find((user) => user.username === username);
+    if (me) {
+      //  parse the me const to include only necessary fields, before passing it to the redux fn
+      const parsed_me = {
+        id: me.id,
+        username: me.username,
+        displayName: me.displayName,
+        bio: me.bio,
+        profilephotourl: profilephotourl,
+        onboarded: me.onboarded,
+      };
+      // console.log("parsed_me: ", parsed_me);
+      return parsed_me;
+    }
+  }
+};
+
 export const printCurrentUser = async () => {
   try {
     const curUser = await currentUser();
     if (curUser != null) {
-      console.log("curUser: ", curUser.id);
       return curUser;
     } else {
       console.log("curUser is null");

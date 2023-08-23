@@ -1,19 +1,17 @@
 // app/providers.tsx
-'use client'
+"use client";
 
-import { CacheProvider } from '@chakra-ui/next-js'
-import { ChakraProvider } from '@chakra-ui/react'
+import { CacheProvider } from "@chakra-ui/next-js";
+import { ChakraProvider } from "@chakra-ui/react";
+import { store } from "@/store/store";
+import { Provider } from "react-redux";
 
-export function Providers({ 
-    children 
-  }: { 
-  children: React.ReactNode 
-  }) {
+export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <CacheProvider>
-      <ChakraProvider>
-        {children}
-      </ChakraProvider>
-    </CacheProvider>
-  )
+    <Provider store={store}>
+      <CacheProvider>
+        <ChakraProvider>{children}</ChakraProvider>
+      </CacheProvider>
+    </Provider>
+  );
 }
