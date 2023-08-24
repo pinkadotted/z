@@ -11,9 +11,6 @@ export const getAllPosts = async () => {
     const allPosts = await pb
       .collection("posts")
       .getFullList({ expand: "author" });
-    const test = await pb.collection('posts').getFullList({filter:'content="brah"'})
-    // const test = await pb.collection('posts').getFullList('content="brah"')
-    console.log('test: ', test)
     return allPosts;
   } catch (error) {
     console.log("getAllPosts error: ", error);
