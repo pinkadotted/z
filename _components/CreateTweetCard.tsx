@@ -1,6 +1,6 @@
 "use client";
 
-import { createPostAction } from "@/lib/actions/users.action";
+import { createPostAction } from "@/lib/actions/posts.action";
 import { useAppSelector } from "@/store/hooks";
 import { Avatar, SkeletonCircle, Textarea } from "@chakra-ui/react";
 import EmojiPicker from "emoji-picker-react";
@@ -29,7 +29,7 @@ const CreateTweetCard = ({ isModal }: any) => {
     // create an obj
     const postObj = {
       content,
-      id: currentUser.id
+      author: currentUser.id
     };
     console.log('postObj: ', postObj)
     createPostAction(postObj);

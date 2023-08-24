@@ -11,35 +11,48 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { getAllUsers } from "@/lib/actions/users.action";
+import { useAppSelector } from "@/store/hooks";
 
-const TweetCard = ({ hasMedia }: { hasMedia: boolean }) => {
+const TweetCard = ({ postobj }: any) => {
+  // const hasMedia = images.length > 0 ? true : false
+  const hasMedia = false;
+  console.log("postobj: ", postobj);
+  // console.log('content: ', postobj.content)
 
   return (
     <div className="flex px-6 py-2 pt-4">
       <div className="flex flex-col w-[100%] justify-between">
         <div>
-          <div className="flex items-center relative "> {/* Add relative positioning */}
+          <div className="flex items-center relative ">
+            {" "}
+            {/* Add relative positioning */}
             {/* Hover Card stuff */}
             <HoverCard>
               <HoverCardTrigger>
-                <Avatar name="Andrew Alfred" src="/sun-profile.jpg" size="lg" />
+                <Avatar
+                  name={postobj.author.displayName}
+                  src={postobj.username}
+                  size="lg"
+                />
               </HoverCardTrigger>
-              <div className="absolute top-full left-0 z-10"> {/* Absolute positioning */}
+              <div className="absolute top-full left-0 z-10">
+                {" "}
+                {/* Absolute positioning */}
                 <HoverCardContent className="w-fit h-60 bg-white drop-shadow-2xl z-50 rounded-xl">
                   <ProfileSummaryCard />
                 </HoverCardContent>
               </div>
             </HoverCard>
             <div className="flex flex-col justify-center p-4">
-              <strong>Andrew Alfred</strong>
-              <span className="text-slate-500">@screamingsun</span>
+              <strong>{postobj.author.displayName}</strong>
+              <span className="text-slate-500">@{postobj.author.username}</span>
             </div>
           </div>
           <p className="flex p-4">
-            Hello this is Andrew Alfred the screaming sun and it's my first time
+            {/* Hello this is Andrew Alfred the screaming sun and it's my first time
             using Z. Hope to make new friends and share new memories with
-            everyone. Cheers. x
+            everyone. Cheers. x */}
+            {postobj.content}
           </p>
         </div>
         <div className="flex justify-around align-self-end">
@@ -76,7 +89,7 @@ const TweetCard = ({ hasMedia }: { hasMedia: boolean }) => {
             border={"none"}
           />
           <IconButton
-            onClick={() => console.log('clicked like button!')}
+            onClick={() => console.log("clicked like button!")}
             aria-label="Like"
             icon={
               <IconContext.Provider value={{ size: "20" }}>

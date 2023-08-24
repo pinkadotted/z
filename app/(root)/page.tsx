@@ -14,8 +14,10 @@ import {
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getCurrentUser } from "@/store/currentUserSlice";
+import { getMyPosts } from "@/lib/actions/posts.action";
 
 export default function Home() {
+  
   console.log("Home is rendered");
   const dispatch = useAppDispatch();
 
@@ -39,11 +41,11 @@ export default function Home() {
       <Header route="home" />
       <CreateTweetCard />
       <div className="divide-y divide-blue-200">
-        <TweetCard hasMedia={false} />
-        <TweetCard hasMedia={false} />
-        <TweetCard hasMedia={true} />
+        {/* <TweetCard hasMedia={false} />
         <TweetCard hasMedia={false} />
         <TweetCard hasMedia={true} />
+        <TweetCard hasMedia={false} />
+        <TweetCard hasMedia={true} /> */}
       </div>
     </div>
   );

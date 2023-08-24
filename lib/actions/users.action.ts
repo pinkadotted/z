@@ -18,11 +18,14 @@ export const getAllUsers = async () => {
 export const getMe = async () => {
   // get username from Clerk
   const curUsr = await currentUser();
+  // console.log("curUsr: ", curUsr);
   if (curUsr != null) {
     const username = curUsr.username;
+    // console.log("username: ", username);
     const profilephotourl = curUsr.profileImageUrl;
     const allUsers = await pb.collection("users").getFullList();
     const me = allUsers.find((user) => user.username === username);
+    // console.log("me: ", me);
     if (me) {
       //  parse the me const to include only necessary fields, before passing it to the redux fn
       const parsed_me = {
@@ -70,22 +73,4 @@ export const onboardUser = async (formValues: object) => {
   }
 };
 
-export const createPostAction =async (postObj: any) => {
-  try {
-    const curUser = await currentUser();
-    if (curUser != null) {
-      console.log('creating a post in the db...')
-      const obj = {...postObj, author: curUser.id}
-      console.log('c: ', obj)
-      const userDetails = await pb.collection("posts").create({
-        ...postObj,
-        author: postObj.id
-      });
-      console.log('userDetails: ', userDetails)
-    } else {
-      console.log("curUser is null");
-    }
-  } catch (error) {
-    console.log("the error is: ", error);
-  }
-}
+

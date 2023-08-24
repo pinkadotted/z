@@ -65,7 +65,7 @@ export function UpdateProfileForm() {
         />
         <FormField
           control={form.control}
-          name="username"
+          name="displayName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Display Name</FormLabel>
@@ -82,7 +82,7 @@ export function UpdateProfileForm() {
 
         <FormField
           control={form.control}
-          name="displayName"
+          name="username"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
